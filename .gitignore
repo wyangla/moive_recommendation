@@ -1,0 +1,10 @@
+*.html
+*.project
+*.pydevproject
+*.log
+*.zip
+*.pyc
+logs
+dataset/*
+persistance/*
+
