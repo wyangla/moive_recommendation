@@ -15,19 +15,26 @@ import json
 
 class Post_unit():
     
-    def __init__(self, tag = 'a', currentId = -1, nextId = -1, previousId = -1, uProp = {}, moiveId = 100, status = 1):
-        self.tag = tag
+    def __init__(self, tagText = 'a', currentId = -1, uProp = {}, moiveId = 100, status = 1):
+        self.tagText = tagText
         self.currentId = currentId
-        self.nextId = nextId
-        self.previousId = previousId
+        
+        self.nextId = -1
+        self.nextUnit = None
+            
+        self.previousId = -1
+        self.previousUnit = None
+
         self.uProp = uProp
         self.moiveId = moiveId
         self.status = status
 
 
     def flatten(self):
-        # currentId, nextId, previousId, uPropJson, moiveId, status
-        flatUnit = "%s %s %s %s %s %s %s"%(self.tag, self.currentId, self.nextId, self.previousId, json.dumps(self.uProp), self.moiveId, self.status)
+        # currentId, nextId, previousId, uPropJson, moiveId, status            
+        flatUnit = "%s %s %s %s %s %s %s"%(self.tagText, self.currentId, self.nextId, self.previousId, json.dumps(self.uProp), self.moiveId, self.status)
+        flatUnit = flatUnit.replace(": ", ":")
+        flatUnit = flatUnit.replace(", ", ",")
         return flatUnit
     
     
@@ -36,20 +43,32 @@ class Post_unit():
         pUnit = cls()
         unitFields = flatUnit.split(" ")
         
-        pUnit.tag = unitFields[0]
+        pUnit.tagText = unitFields[0]
         pUnit.currentId = int(unitFields[1])
         pUnit.nextId = int(unitFields[2])
         pUnit.previousId = int(unitFields[3])
         pUnit.uProp = json.loads(unitFields[4])
-        pUnit.moiveId = unitFields[5]
+        pUnit.moiveId = int(unitFields[5])
         pUnit.status = int(unitFields[6])
         
         return pUnit
-        
+    
+    
+    def link_to_next(self, nextUnit):
+        if type(nextUnit) != type(None):
+            self.nextUnit = nextUnit
+            self.nextId = nextUnit.currentId
+    
+    
+    def link_to_previous(self, previousUnit):
+        if type(previousUnit) != type(None):
+            self.previousUnit = previousUnit
+            self.previousId = previousUnit.currentId
+            
         
         
 if __name__ == '__main__':    
-    pUnit = Post_unit.deflatten('1 -1 -1 -1 {"tf":1} 100000 1')
+    pUnit = Post_unit.deflatten('a -1 -1 -1 {"gen_score":1} 100000 1')
     print(pUnit.__dict__)
     print(pUnit.flatten())
         

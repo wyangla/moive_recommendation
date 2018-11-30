@@ -19,19 +19,19 @@ from logging import handlers, StreamHandler
 class Logger():
     
     @classmethod
-    def get_logger(self, name = 'test', logLevel = 'DEBUG'):
+    def get_logger(self, name = 'test', logLevel = 'DEBUG', persist = True):
         lg = getLogger(name)
         lg.setLevel(logLevel)
         
         fmt = Formatter('%(asctime)s [%(levelname)s] - %(filename)s:%(lineno)s %(message)s')
         
-        fhandler = handlers.RotatingFileHandler('./' + name + '.log', mode = 'a', maxBytes = 1024 * 1024, backupCount = 3)
-        fhandler.setFormatter(fmt)
+        if persist:
+            fhandler = handlers.RotatingFileHandler('./' + name + '.log', mode = 'a', maxBytes = 1024 * 1024, backupCount = 3)
+            fhandler.setFormatter(fmt)
+            lg.addHandler(fhandler)
         
         shandler = StreamHandler()
         shandler.setFormatter(fmt)
-        
-        lg.addHandler(fhandler)
         lg.addHandler(shandler)
         
         return lg

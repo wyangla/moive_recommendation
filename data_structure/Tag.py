@@ -13,15 +13,16 @@ class Tag():
     
     def __init__(self, text = ''):
         self.text = text
-        self.starterPUnitId = -1    # point to the first posting unit
-        self.docCount = 0           # total count of the movie contain this tag
+        self.pUnitIds = []          # list of posting units of one tag
         self.tProp = {}             # currently contain 'maxScore' key
         
         
     def flatten(self):
-        # tag text, starterPUnitId, docCount, docPropJson
-        flatUnit = "%s %s %s %s"%(self.text, self.starterPUnitId, self.docCount, json.dumps(self.docProp))
-        return flatUnit
+        # tag text, pUnitIds, docPropJson
+        flatTag = "%s %s %s"%(self.text, json.dumps(self.pUnitIds), json.dumps(self.tProp))
+        flatTag = flatTag.replace(": ", ":")
+        flatTag = flatTag.replace(", ", ",")
+        return flatTag
     
     
     @classmethod
@@ -30,15 +31,14 @@ class Tag():
         unitFields = flatTag.split(" ")
         
         tag.text = unitFields[0]
-        tag.starterPUnitId = int(unitFields[1])
-        tag.docCount = int(unitFields[2])
-        tag.docProp = json.loads(unitFields[3])
+        tag.pUnitIds = json.loads(unitFields[1])
+        tag.tProp = json.loads(unitFields[2])
         
         return tag
     
     
     
 if __name__ == '__main__':
-    tag = Tag.deflatten('a -1 10 {"maxScore":1}')
+    tag = Tag.deflatten('a [-1,2,3] {"maxScore":1}')
     print(tag.__dict__)
     print(tag.flatten())
