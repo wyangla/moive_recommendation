@@ -28,7 +28,7 @@ class Doc():
         doc = Doc()
         docFields = flatDoc.split(" ")
         
-        doc.docId = docFields[0]
+        doc.docId = int(docFields[0])
         doc.basicInfo = json.loads(docFields[1])
         doc.pUnitIds = json.loads(docFields[2])
         

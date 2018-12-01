@@ -11,9 +11,9 @@ from abc import ABC, abstractmethod
 class OperationOnUnit(ABC):
     
     @abstractmethod
-    def set_param(self):
+    def set_param(self, param):
         pass
     
     @abstractmethod
-    def conduct(self):
+    def conduct(self, pUnit):
         pass

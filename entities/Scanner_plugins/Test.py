@@ -4,7 +4,7 @@ Created on 1 Dec 2018
 
 @author: wyan2
 '''
-from entities import OperationOnUnit 
+from entities import OperationOnUnit
 
 
 
@@ -13,12 +13,12 @@ class Test(OperationOnUnit):
         pass
 
 
-    def set_param(self):
-        pass
+    def set_param(self, param):
+        print('param set: ' + str(param))
 
 
     def conduct(self, pUnit):
-        print('conduct operation on post unit')
+        print(pUnit.docId)
     
     
     

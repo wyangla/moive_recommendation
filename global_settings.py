@@ -21,9 +21,12 @@ lastPUnitIdPath = os.path.join(persistancePath, 'lastPUnitId')
 docInfoPath = os.path.join(persistancePath, 'docInfo')      # information of each movie
 
 
-'''multi-threading configs'''
-workerNum = 3
+# '''multi-threading configs'''
+# workerNum = 3
 
 
+'''scorer config'''
+scorerPluginPath = 'entities.Scorer_plugins.'
+scoringModel = 'Cos'
 
 

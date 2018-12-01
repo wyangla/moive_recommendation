@@ -133,6 +133,13 @@ class Index():
                 for flatPUnit in f.readlines():
                     pUnit = Post_unit.deflatten(flatPUnit.strip())
                     self.posting[pUnit.currentId] = pUnit
+                    
+                    # link the list
+                    previousUnit = self.posting.get(pUnit.previousId)
+                    if previousUnit != None:
+                        previousUnit.link_to_next(pUnit)
+                        pUnit.link_to_previous(previousUnit)
+                        
     
     
     def _load_last_pUnitId(self):

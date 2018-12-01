@@ -10,7 +10,7 @@ os.sys.path.append('..')
 from inv_index import Index
 from data_structure import Post_unit
 from probes import Index_probe
-import json
+
 
 
 index = Index()

@@ -4,42 +4,46 @@ Created on 30 Nov 2018
 
 @author: wyan2
 '''
+
 import os
 os.sys.path.append('..')
 
-from utils.decrators import singleton
 from inv_index import Index
-from utils import general
-import global_settings as gs
+# from utils import general
+# import global_settings as gs
 
 
 
-@singleton
-class scanner():
+class Scanner():
     
     def __init__(self):
         self.idx = Index()
     
     
     # iterate over the posting list and apply operations on the units
-    def _iterate_over_posting_list(self, currentUnit, operationCls):
-        operationCls(currentUnit)
-        self._iterate_over_posting_list(currentUnit.nextUnit, operationCls)
+    def _iterate_over_posting_list(self, currentUnit, operationConductFunc): # 'entities.Test'
+        operationConductFunc(currentUnit)
+        nextUnit = currentUnit.nextUnit
+        if type(nextUnit) != type(None):
+            self._iterate_over_posting_list(currentUnit.nextUnit, operationConductFunc)
     
     
-    def scan_tags(self, tagList, operation):
-        for tag in tagList:
-            pUnitIds = self.idx.lexicon[tag]
-            firstUnit = self.posting[pUnitIds[0]]
-            self._iterate_over_posting_list(firstUnit, operation)
+    # TAAT
+    def scan(self, tagList, operationCls, operationParam):
         
-    
-    # DAAT
-    def scan(self, tagList):
-        workloads = general.task_spliter(tagList, gs.workerNum)
-        for workload in workloads:
-            pass
-    
+        operation = operationCls()
+        operation.set_param(operationParam)
+        operationConductFunc = operation.conduct
+        
+        for tagText in tagList:
+            tag = self.idx.lexicon.get(tagText)
+            
+            if type(tag) != type(None):     # skip the non-existing tag
+                pUnitIds = tag.pUnitIds
+                currentUnit = self.idx.posting[pUnitIds[0]]
+                self._iterate_over_posting_list(currentUnit, operationConductFunc)
+
+        
     
     
     
