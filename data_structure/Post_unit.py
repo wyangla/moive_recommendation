@@ -15,7 +15,7 @@ import json
 
 class Post_unit():
     
-    def __init__(self, tagText = 'a', currentId = -1, uProp = {}, moiveId = 100, status = 1):
+    def __init__(self, tagText = 'a', currentId = -1, uProp = {}, docId = 0, status = 1):
         self.tagText = tagText
         self.currentId = currentId
         
@@ -26,13 +26,13 @@ class Post_unit():
         self.previousUnit = None
 
         self.uProp = uProp
-        self.moiveId = moiveId
+        self.docId = docId
         self.status = status
 
 
     def flatten(self):
         # tagText, currentId, nextId, previousId, uPropJson, moiveId, status            
-        flatUnit = "%s %s %s %s %s %s %s"%(self.tagText, self.currentId, self.nextId, self.previousId, json.dumps(self.uProp), self.moiveId, self.status)
+        flatUnit = "%s %s %s %s %s %s %s"%(self.tagText, self.currentId, self.nextId, self.previousId, json.dumps(self.uProp), self.docId, self.status)
         flatUnit = flatUnit.replace(": ", ":")
         flatUnit = flatUnit.replace(", ", ",")
         return flatUnit
@@ -48,7 +48,7 @@ class Post_unit():
         pUnit.nextId = int(unitFields[2])
         pUnit.previousId = int(unitFields[3])
         pUnit.uProp = json.loads(unitFields[4])
-        pUnit.moiveId = int(unitFields[5])
+        pUnit.docId = int(unitFields[5])
         pUnit.status = int(unitFields[6])
         
         return pUnit

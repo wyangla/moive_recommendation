@@ -21,7 +21,7 @@ class Index():
         self.currentPUnitId = 0     # the latest posting unit id
         self.lexicon = {}           # {tagText: tag}
         self.posting = {}           # {pUnitId: pUnit}
-        self.docInfo = {}           # {docId: docInfo}, here is the movie info
+        self.docInfo = {}           # {docId: doc}, here is the movie info
         
     
     def _get_currentPUnitId(self):

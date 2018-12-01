@@ -28,11 +28,11 @@ class Tag():
     @classmethod
     def deflatten(cls, flatTag):
         tag = cls()
-        unitFields = flatTag.split(" ")
+        tagFields = flatTag.split(" ")
         
-        tag.text = unitFields[0]
-        tag.pUnitIds = json.loads(unitFields[1])
-        tag.tProp = json.loads(unitFields[2])
+        tag.text = tagFields[0]
+        tag.pUnitIds = json.loads(tagFields[1])
+        tag.tProp = json.loads(tagFields[2])
         
         return tag
     
