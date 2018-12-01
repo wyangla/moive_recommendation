@@ -31,7 +31,7 @@ class Post_unit():
 
 
     def flatten(self):
-        # currentId, nextId, previousId, uPropJson, moiveId, status            
+        # tagText, currentId, nextId, previousId, uPropJson, moiveId, status            
         flatUnit = "%s %s %s %s %s %s %s"%(self.tagText, self.currentId, self.nextId, self.previousId, json.dumps(self.uProp), self.moiveId, self.status)
         flatUnit = flatUnit.replace(": ", ":")
         flatUnit = flatUnit.replace(", ", ",")
