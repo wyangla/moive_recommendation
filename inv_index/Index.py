@@ -4,7 +4,7 @@ Created on 30 Nov 2018
 
 @author: wyan2
 '''
-from data_structure import Tag, Post_unit
+from data_structure import Tag, Post_unit, Doc
 from logger import Logger
 import global_settings as gs
 from global_settings import postingsPath
@@ -60,8 +60,8 @@ class Index():
         self.posting[pUnit.currentId] = pUnit
         
         
-    def add_doc_info(self, docId, docInfo):
-        self.docInfo[docId] = docInfo
+    def add_doc_info(self, doc):
+        self.docInfo[doc.docId] = doc
         
         
     def _persist_lexicon(self):
@@ -103,9 +103,8 @@ class Index():
         docInfoPath = gs.docInfoPath
         with open(docInfoPath, 'w', encoding = 'utf-8') as f:
             for docId in self.docInfo:
-                docInfoString = json.dumps(self.docInfo[docId])
-                flatDocInfo = str(docId) + ' ' + docInfoString
-                f.write(flatDocInfo + '\n')
+                doc = self.docInfo[docId]
+                f.write(doc.flatten() + '\n')
     
     
     def persist_index(self):
@@ -145,12 +144,9 @@ class Index():
     def _load_docInfo(self):
         self.lg.info('load doc info')
         with open(gs.docInfoPath, 'r') as f:
-            for flatDocInfo in f.readlines():
-                docId = flatDocInfo.split(' ')[0]
-                docInfo = json.loads(flatDocInfo.replace(docId + ' ', ''), encoding = 'utf-8')
-                docId = int(docId)
-                
-                self.docInfo[docId] = docInfo
+            for flatDoc in f.readlines():
+                doc = Doc.deflatten(flatDoc)
+                self.docInfo[doc.docId] = doc.docInfo
     
     
     def load_index(self):
