@@ -10,6 +10,7 @@ os.sys.path.append('..')
 from inv_index import Index
 from data_structure import Post_unit
 from probes import Index_probe
+import json
 
 
 index = Index()
@@ -31,21 +32,34 @@ def prepare_index():
     
     
 def test_persisting():
-    '''test persisting'''
     os.chdir('..')
     index.persist_index()
         
     
 def test_loading():
-    '''test loading'''
     os.chdir('..')
     index.load_index()
     
+    Index_probe().show()
+#     Index_probe().display()
+    
+    
+def test_docInfo():
+    os.chdir('..')
+    index.add_doc_info(111, {"test":123})   # test add
+    index.add_doc_info(112, {"test":123})
+    index.add_doc_info(113, {"test":123})
     Index_probe().display()
     
+    index._persist_docInfo()    # test persist
+    index.clear_index()
+    Index_probe().display()
     
+    index._load_docInfo()   # test load
+    Index_probe().display()
+    
+
     
 if __name__ == '__main__':
     test_loading()
-    
-    
+#     test_docInfo()

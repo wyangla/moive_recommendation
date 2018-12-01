@@ -8,6 +8,7 @@ from inv_index import Index
 
 
 
+
 class Index_probe():
     
     def __init__(self):
@@ -16,7 +17,11 @@ class Index_probe():
     
     # show statistic information
     def show(self):
-        pass
+        statisticInfo = {}
+        statisticInfo['lexicon size'] = len(self.idx.lexicon)
+        statisticInfo['posting size'] = len(self.idx.posting)
+        statisticInfo['movieInfo size'] = len(self.idx.docInfo)
+        print(statisticInfo)
     
     
     # show detailed information
@@ -31,7 +36,7 @@ class Index_probe():
         for pId in index.posting:
             print(index.posting[pId].tagText)
             
-        
+        print(index.docInfo)
         
     
     

@@ -18,7 +18,7 @@ persistancePath = r'./persistance'
 lexiconPath = os.path.join(persistancePath, 'lexicon')
 postingsPath = os.path.join(persistancePath, 'postings')
 lastPUnitIdPath = os.path.join(persistancePath, 'lastPUnitId')
-
+docInfoPath = os.path.join(persistancePath, 'docInfo')      # information of each movie
 
 
 
