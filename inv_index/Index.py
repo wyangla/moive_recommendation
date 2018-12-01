@@ -146,7 +146,7 @@ class Index():
         with open(gs.docInfoPath, 'r') as f:
             for flatDoc in f.readlines():
                 doc = Doc.deflatten(flatDoc)
-                self.docInfo[doc.docId] = doc.docInfo
+                self.docInfo[doc.docId] = doc
     
     
     def load_index(self):

@@ -9,4 +9,5 @@ encoding//inv_index/Index.py=utf-8
 encoding//logger/Logger.py=utf-8
 encoding//probes/Index_probe.py=utf-8
 encoding//tests/inv_index_test.py=utf-8
+encoding//utils/general.py=utf-8
 encoding/global_settings.py=utf-8

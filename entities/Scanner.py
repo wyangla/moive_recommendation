@@ -5,6 +5,7 @@ Created on 30 Nov 2018
 @author: wyan2
 '''
 from utils.decrators import singleton
+from inv_index import Index
 
 
 
@@ -12,13 +13,30 @@ from utils.decrators import singleton
 class scanner():
     
     def __init__(self):
-        pass
+        self.idx = Index()
     
     
-    def _iterate_over_posting_list(self, currentPUnit, operation):
-        pass
+    # iterate over the posting list and apply operations on the units
+    def _iterate_over_posting_list(self, currentUnit, operation):
+        operation(currentUnit)
+        self._iterate_over_posting_list(currentUnit.nextUnit, operation)
     
     
-    def scan(self):
-        pass
+    def scan_tag(self, tag, operation):
+        pUnitIds = self.idx.lexicon[tag]
+        firstUnit = self.posting[pUnitIds[0]]
+        self._iterate_over_posting_list(firstUnit, operation)
+        
+    
+    # DAAT
+    def scan(self, tagList):
+        workLoads = []
+        for tag in tagList:
+            pass
+    
+    
+    
+    
+    
+    
         
