@@ -2,8 +2,8 @@
 *.project
 *.pydevproject
 *.log
-*.zip
 *.pyc
 logs
-persistance/*
+_bak/*
+
 
