@@ -5,8 +5,9 @@ Created on 30 Nov 2018
 @author: wyan2
 '''
 
-import os
+import os, sys
 os.sys.path.append('..')
+sys.setrecursionlimit(5000)     # the largest recursion times
 
 from inv_index import Index
 # from utils import general

@@ -14,6 +14,7 @@ encoding//inv_index/Advanced_operations.py=utf-8
 encoding//inv_index/Index.py=utf-8
 encoding//logger/Logger.py=utf-8
 encoding//probes/Index_probe.py=utf-8
+encoding//tests/advcanced_operations_test.py=utf-8
 encoding//tests/cos_test.py=utf-8
 encoding//tests/inv_index_test.py=utf-8
 encoding//tests/scanner_test.py=utf-8

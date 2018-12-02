@@ -12,7 +12,7 @@ import json
 
 
 
-class Adcanced_operations():
+class Advanced_operations():
     
     def __init__(self):
         self.idx = Index()
@@ -21,21 +21,17 @@ class Adcanced_operations():
     
     # docId -> tagList -> search
     def search(self, docId):
-        retMsg = ''     # the returned message
         tagList = []
         scoreCounter = Counter()
         
         doc = self.idx.docInfo.get(docId)
-        if type(doc) == type(None):
-            retMsg = 'movie is not existing'
-        else:
+        if not type(doc) == type(None):
             for pUnitId in doc.pUnitIds:
                 tagList.append(self.idx.posting[pUnitId].tagText)
             
             self.snr.scan(tagList, Search_tag, scoreCounter)
             
-            
-        return retMsg
+        return scoreCounter
     
     
     
