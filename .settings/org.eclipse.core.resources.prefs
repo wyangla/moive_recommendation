@@ -22,4 +22,6 @@ encoding//tests/scanner_test.py=utf-8
 encoding//tests/scorer_test.py=utf-8
 encoding//utils/decrators.py=utf-8
 encoding//utils/general.py=utf-8
+encoding/Api.py=utf-8
 encoding/global_settings.py=utf-8
+encoding/search.py=utf-8

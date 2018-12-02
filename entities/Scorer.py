@@ -17,10 +17,10 @@ class Scorer():
         pass
     
     
-    def cal_score(self, pUnit):
+    def cal_score(self, pUnit, query = None):
         scoringModelModule = __import__(gs.scorerPluginPath + gs.scoringModel)
         scoringModel = getattr(scoringModelModule, gs.scoringModel)
-        contriScore = scoringModel().cal_score(pUnit)
+        contriScore = scoringModel().cal_score(pUnit, query)
         return contriScore
     
     

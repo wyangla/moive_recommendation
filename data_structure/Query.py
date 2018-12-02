@@ -12,4 +12,5 @@ class Query():
     def __init__(self):
         self.qId = -1
         self.tagTf = {}     # {tagText: tf}
-        self.qProp = {}     # store the calculated tag contribute scores, e.g. tfidf
+        self.tagScore = {}  # {tagText: score}, e.g. tfidf
+        self.qProp = {}     # not used yet

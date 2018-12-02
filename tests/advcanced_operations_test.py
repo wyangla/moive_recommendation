@@ -11,7 +11,7 @@ from inv_index import Index, Advanced_operations
 
 
 
-def test_search():
+def test__search():
     idx = Index()
     idx.load_index()
     adOps = Advanced_operations()
@@ -19,15 +19,18 @@ def test_search():
     
     
 def test_display_search():
+    docId = 11
     idx = Index()
     idx.load_index()
     adOps = Advanced_operations()
-    print(adOps.display_search(541))
-    
+    print(adOps.display_search(docId))
+    print()
+    print(adOps.search(docId))    
+
+
 
 if __name__ == '__main__':
 #     test_search()
     test_display_search()
-    
     
     

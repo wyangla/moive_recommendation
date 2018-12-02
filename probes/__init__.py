@@ -1,1 +1,1 @@
-from .Index_probe import Index_probe
+from probes.Index_probe import Index_probe

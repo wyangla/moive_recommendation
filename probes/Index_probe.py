@@ -21,6 +21,7 @@ class Index_probe():
         statisticInfo['lexicon size'] = len(self.idx.lexicon)
         statisticInfo['posting size'] = len(self.idx.posting)
         statisticInfo['movieInfo size'] = len(self.idx.docInfo)
+        statisticInfo['query pool size'] = len(self.idx.queryPool)
         print(statisticInfo)
     
     
@@ -37,6 +38,8 @@ class Index_probe():
             print(index.posting[pId].tagText)
             
         print(index.docInfo)
+        
+        print(index.queryPool)
         
     
     

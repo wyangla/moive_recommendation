@@ -68,7 +68,7 @@ class Index():
         
     def add_query(self, query):
         while True:
-            query.qId = np.random.random(1000000)
+            query.qId = np.random.randint(1000000)
             if query.qId not in self.queryPool:
                 self.queryPool[query.qId] = query
                 break
@@ -80,7 +80,7 @@ class Index():
         try:
             self.queryPool.pop(qId)
         except Exception as e:
-            self.lg.warn(e)
+            self.lg.warn('no such query exisitng: %d'%qId)
         
         
     def _persist_lexicon(self):

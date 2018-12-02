@@ -14,6 +14,8 @@ from collections import Counter
 
 
 '''
+* Here is using the docLen instead of the vecLen, and not using the query tf *
+
 N: 19501
 
 dark_hero: df 24

@@ -13,6 +13,7 @@ from flask import Flask, render_template, request
 from inv_index import Index, Advanced_operations
 from logger import Logger
 import global_settings as gs
+import json
 
 
 
@@ -27,13 +28,16 @@ app = Flask(__name__)
 @app.route('/search', methods=['POST', 'GET'])
 def search():
     movieId = int(request.args['movieId'])
-    return str(adOps.search(movieId))
+    return json.dumps(adOps.search(movieId))
 
 
 @app.route('/display_search', methods=['POST', 'GET'])
 def display_search():
+    templatePath = gs.templatePath
     movieId = int(request.args['movieId'])
-    return adOps.display_search(movieId)
+    displayMsg = adOps.display_search(movieId)
+    page = render_template(templatePath, message = displayMsg)
+    return page
 
 
 def start_serving():
@@ -44,8 +48,6 @@ def start_serving():
 
 
 if __name__ == '__main__':
-    import os
-    os.chdir('..')
     start_serving()
     
     

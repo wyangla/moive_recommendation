@@ -8,7 +8,7 @@ import os
 os.sys.path.append('..')
 
 from inv_index import Index
-from data_structure import Post_unit
+from data_structure import Post_unit, Query
 from probes import Index_probe
 
 
@@ -58,8 +58,22 @@ def test_docInfo():
     index._load_docInfo()   # test load
     Index_probe().display()
     
-
+    
+def test_query_ops():
+    qIds = []
+    for i in range(10):
+        q = Query()
+        qIds.append(index.add_query(q))    
+    Index_probe().display()
+    
+    for qId in qIds:
+        index.remove_query(qId)
+    Index_probe().display()
+    
+    index.remove_query(12341)
+    
     
 if __name__ == '__main__':
-    test_loading()
+#     test_loading()
 #     test_docInfo()
+    test_query_ops()

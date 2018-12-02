@@ -15,7 +15,7 @@ import json
 
 class Post_unit():
     
-    def __init__(self, tagText = 'a', currentId = -1, uProp = {}, docId = 0, status = 1):
+    def __init__(self, tagText = 'a', currentId = -1, uProp = None, docId = 0, status = 1):
         self.tagText = tagText
         self.currentId = currentId
         
@@ -25,7 +25,7 @@ class Post_unit():
         self.previousId = -1
         self.previousUnit = None
 
-        self.uProp = uProp
+        self.uProp = uProp or {}
         self.docId = docId
         self.status = status
 

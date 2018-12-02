@@ -10,6 +10,7 @@ os.sys.path.append('..')
 sys.setrecursionlimit(5000)     # the largest recursion times
 
 from inv_index import Index
+from logger import Logger
 # from utils import general
 # import global_settings as gs
 
@@ -17,7 +18,8 @@ from inv_index import Index
 
 class Scanner():
     
-    def __init__(self):
+    def __init__(self, logger = None):
+        self.lg = logger or Logger.get_logger('Scanner')
         self.idx = Index()
     
     
@@ -30,16 +32,17 @@ class Scanner():
     
     
     # TAAT
-    def scan(self, tagList, operationCls, operationParam):
+    def scan(self, tagList, operationCls, operationParam, query = None):
         
         operation = operationCls()
-        operation.set_param(operationParam)
+        operation.set_query(query)              # pass the query into operation
+        operation.set_param(operationParam)     # set parameter into operation
         operationConductFunc = operation.conduct
         
         for tagText in tagList:
             tag = self.idx.lexicon.get(tagText)
             
-            if type(tag) != type(None):     # skip the non-existing tag
+            if type(tag) != type(None):         # skip the non-existing tag
                 pUnitIds = tag.pUnitIds
                 currentUnit = self.idx.posting[pUnitIds[0]]
                 self._iterate_over_posting_list(currentUnit, operationConductFunc)

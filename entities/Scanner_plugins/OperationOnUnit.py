@@ -11,6 +11,10 @@ from abc import ABC, abstractmethod
 class OperationOnUnit(ABC):
     
     @abstractmethod
+    def set_query(self, query):
+        pass
+    
+    @abstractmethod
     def set_param(self, param):
         pass
     

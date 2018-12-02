@@ -8,7 +8,7 @@ import os
 
 
 
-serving_port = 11111    # the porting that inverted index is serving at
+servingPort = 11111    # the porting that inverted index is serving at
 
 
 '''basic path'''
@@ -30,7 +30,7 @@ scoringModel = 'Cos'
 
 '''display'''
 topK = 20       # display top 20 results
-
+templatePath = 'display_search.html'
 
 
 

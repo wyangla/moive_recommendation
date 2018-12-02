@@ -12,6 +12,9 @@ class Test(OperationOnUnit):
     def __init__(self):
         pass
 
+    def set_query(self, query):
+        pass
+    
 
     def set_param(self, param):
         print('param set: ' + str(param))
