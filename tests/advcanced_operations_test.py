@@ -22,7 +22,7 @@ def test_display_search():
     idx = Index()
     idx.load_index()
     adOps = Advanced_operations()
-    print(adOps.display_search(2001))
+    print(adOps.display_search(541))
     
 
 if __name__ == '__main__':

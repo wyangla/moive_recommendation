@@ -44,15 +44,25 @@ class Advanced_operations():
     def display_search(self, docId):
         displayMsgList = []
         scoreCounter = self.search(docId)
+        scoreCounter.pop(docId)
         topKRecords = scoreCounter.most_common(gs.topK)
         
+        # head line
+        displayMsgList.append('%s\t%-20s\t%-50s\t%-30s\t%s\n'%('docId', 'rankingScore', 'title', 'genre', 'tagNum'))
+        
+        # info of searched movie
+        basicInfo = self.idx.docInfo.get(docId).basicInfo
+        displayMsgList.append('%d\t%-20s\t%-50s\t%-30s\t%d\n\n'%(docId, '-', basicInfo['title'], basicInfo['genre'], basicInfo['tagNum']))
+        
+        
+        # info of the recommendations
         for record in topKRecords:
             docId = record[0]
             score = record[1]
             basicInfo = self.idx.docInfo.get(docId).basicInfo
             
             # docId, ranking_score, title, genre, tagNum
-            displayMsgList.append('%d\t%f\t%-50s\t%-30s\t%d\n'%(docId, score, basicInfo['title'], basicInfo['genre'], basicInfo['tagNum']))
+            displayMsgList.append('%d\t%-20f\t%-50s\t%-30s\t%d\n'%(docId, score, basicInfo['title'], basicInfo['genre'], basicInfo['tagNum']))
     
         displayMsg = ''.join(displayMsgList)
         return displayMsg

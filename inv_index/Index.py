@@ -11,6 +11,7 @@ from global_settings import postingsPath
 import os
 from utils import decrators
 import json
+import numpy as np
 
 
 
@@ -22,6 +23,7 @@ class Index():
         self.lexicon = {}           # {tagText: tag}
         self.posting = {}           # {pUnitId: pUnit}
         self.docInfo = {}           # {docId: doc}, here is the movie info
+        self.queryPool = {}         # {qId: query}, for temporarily store the queries
         
     
     def _get_currentPUnitId(self):
@@ -62,6 +64,19 @@ class Index():
         
     def add_doc_info(self, doc):
         self.docInfo[doc.docId] = doc
+        
+        
+    def add_query(self, query):
+        query.qId = np.random.random(1000000)
+        self.queryPool[query.qId] = query
+        return query.qId
+        
+        
+    def remove_query(self, qId):
+        try:
+            self.queryPool.pop(qId)
+        except Exception as e:
+            self.lg.warn(e)
         
         
     def _persist_lexicon(self):
