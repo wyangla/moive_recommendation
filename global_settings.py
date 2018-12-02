@@ -21,12 +21,17 @@ lastPUnitIdPath = os.path.join(persistancePath, 'lastPUnitId')
 docInfoPath = os.path.join(persistancePath, 'docInfo')      # information of each movie
 
 
-# '''multi-threading configs'''
-# workerNum = 3
-
 
 '''scorer config'''
 scorerPluginPath = 'entities.Scorer_plugins.'
 scoringModel = 'Cos'
+
+
+
+'''display'''
+topK = 20       # display top 20 results
+
+
+
 
 

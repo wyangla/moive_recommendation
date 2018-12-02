@@ -18,6 +18,16 @@ def test_search():
     print(adOps.search(541).most_common(10))
     
     
+def test_display_search():
+    idx = Index()
+    idx.load_index()
+    adOps = Advanced_operations()
+    print(adOps.display_search(2001))
+    
 
 if __name__ == '__main__':
-    test_search()
+#     test_search()
+    test_display_search()
+    
+    
+    
