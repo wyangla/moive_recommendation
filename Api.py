@@ -40,6 +40,13 @@ def display_search():
     return page
 
 
+@app.route('/display_search_console', methods=['POST', 'GET'])
+def display_search_console():
+    movieId = int(request.args['movieId'])
+    displayMsg = adOps.display_search(movieId)
+    return displayMsg
+
+
 def start_serving():
     global idx
     idx.load_index()    # initialise the inverted-index
