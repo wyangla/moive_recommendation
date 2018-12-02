@@ -67,8 +67,12 @@ class Index():
         
         
     def add_query(self, query):
-        query.qId = np.random.random(1000000)
-        self.queryPool[query.qId] = query
+        while True:
+            query.qId = np.random.random(1000000)
+            if query.qId not in self.queryPool:
+                self.queryPool[query.qId] = query
+                break
+            
         return query.qId
         
         
