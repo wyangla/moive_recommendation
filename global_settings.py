@@ -24,7 +24,7 @@ docInfoPath = os.path.join(persistancePath, 'docInfo')      # information of eac
 
 '''scorer config'''
 scorerPluginPath = 'entities.Scorer_plugins.'
-scoringModel = 'Cos'
+scoringModel = 'CosTfidf'
 
 
 

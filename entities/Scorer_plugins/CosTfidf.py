@@ -9,7 +9,7 @@ import numpy as np
 
 
 
-class Cos():
+class CosTfidf():
     
     def __init__(self):
         self.idx = Index()
